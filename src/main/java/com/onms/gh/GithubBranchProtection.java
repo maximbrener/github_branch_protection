@@ -14,7 +14,7 @@ public class GithubBranchProtection {
     private static final String CSV_FILE_NAME = "main_branches.csv";
     private static final String CURRENT_STATE_SNAPSHOT_DIR = "snapshot/";
 
-    private static final String BRANCH_PROTECTION_BODY = "{\n" +
+    private static final String BRANCH_PROTECTION_RULES = "{\n" +
             "  \"required_status_checks\": {\n" +
             "    \"strict\": true,\n" +
             "    \"contexts\": []\n" +
@@ -47,7 +47,7 @@ public class GithubBranchProtection {
         gbp.saveCurrentState(reposWithMainBranches, Const.ORGANIZATION, CURRENT_STATE_SNAPSHOT_DIR);
 
         //apply branch protection
-        gbp.setBranchProtection(reposWithMainBranches, Const.ORGANIZATION, BRANCH_PROTECTION_BODY);
+        gbp.setBranchProtection(reposWithMainBranches, Const.ORGANIZATION, BRANCH_PROTECTION_RULES);
     }
 
     private void setBranchProtection(Map<String, List<Branch>> reposWithMainBranches, String org, String protectionRules){
