@@ -23,9 +23,7 @@ import java.util.List;
 
 public class GithubClient {
 
-    private static final String AUTH = "<github username>:<github token>";
-
-    public static String getBranchProtection(String org, String repo, String branch){
+   public static String getBranchProtection(String org, String repo, String branch){
         String url = "https://api.github.com/repos/" + org + "/" + repo + "/branches/" + branch + "/protection";
         return getGithubData(url);
     }
@@ -82,7 +80,7 @@ public class GithubClient {
         try {
             URL url = new URL(urlStr);
             con = (HttpURLConnection) url.openConnection();
-            byte[] encodedAuth = Base64.getEncoder().encode(AUTH.getBytes(StandardCharsets.UTF_8));
+            byte[] encodedAuth = Base64.getEncoder().encode(Const.AUTH.getBytes(StandardCharsets.UTF_8));
             String authHeaderValue = "Basic " + new String(encodedAuth);
             con.setRequestProperty("Authorization", authHeaderValue);
             con.setRequestMethod("GET");
@@ -112,7 +110,7 @@ public class GithubClient {
         try {
             URL url = new URL(urlStr);
             con = (HttpURLConnection) url.openConnection();
-            byte[] encodedAuth = Base64.getEncoder().encode(AUTH.getBytes(StandardCharsets.UTF_8));
+            byte[] encodedAuth = Base64.getEncoder().encode(Const.AUTH.getBytes(StandardCharsets.UTF_8));
             String authHeaderValue = "Basic " + new String(encodedAuth);
             con.setRequestProperty("Authorization", authHeaderValue);
             con.setRequestMethod("DELETE");
@@ -137,7 +135,7 @@ public class GithubClient {
 
     public static void putGithubData(String url, String body) {
         HttpResponse<String> response = null;
-        byte[] encodedAuth = Base64.getEncoder().encode(AUTH.getBytes(StandardCharsets.UTF_8));
+        byte[] encodedAuth = Base64.getEncoder().encode(Const.AUTH.getBytes(StandardCharsets.UTF_8));
         String authHeaderValue = "Basic " + new String(encodedAuth);
 
         HttpRequest request = HttpRequest.newBuilder()

@@ -13,7 +13,6 @@ public class GithubBranchProtection {
 
     private static final String CSV_FILE_NAME = "main_branches.csv";
     private static final String CURRENT_STATE_SNAPSHOT_DIR = "snapshot/";
-    private static final String ORGANIZATION = "OpenNMS";
 
     private static final String BRANCH_PROTECTION_BODY = "{\n" +
             "  \"required_status_checks\": {\n" +
@@ -33,7 +32,7 @@ public class GithubBranchProtection {
 
     public static void main(String[] args) {
         GithubBranchProtection gbp = new GithubBranchProtection();
-        Map<String, List<Branch>> reposWithMainBranches = gbp.findMainBranches(ORGANIZATION);
+        Map<String, List<Branch>> reposWithMainBranches = gbp.findMainBranches(Const.ORGANIZATION);
 
         // print to file
         Utils.printCSV(reposWithMainBranches, CSV_FILE_NAME);
@@ -45,10 +44,10 @@ public class GithubBranchProtection {
         }
 
         // save current status of the protected branch
-        gbp.saveCurrentState(reposWithMainBranches, ORGANIZATION, CURRENT_STATE_SNAPSHOT_DIR);
+        gbp.saveCurrentState(reposWithMainBranches, Const.ORGANIZATION, CURRENT_STATE_SNAPSHOT_DIR);
 
         //apply branch protection
-        gbp.setBranchProtection(reposWithMainBranches, ORGANIZATION, BRANCH_PROTECTION_BODY);
+        gbp.setBranchProtection(reposWithMainBranches, Const.ORGANIZATION, BRANCH_PROTECTION_BODY);
     }
 
     private void setBranchProtection(Map<String, List<Branch>> reposWithMainBranches, String org, String protectionRules){
