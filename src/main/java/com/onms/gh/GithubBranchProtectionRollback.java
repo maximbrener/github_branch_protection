@@ -13,7 +13,7 @@ public class GithubBranchProtectionRollback {
         gbp.rollbackBranchProtection(CURRENT_STATE_SNAPSHOT_DIR);
     }
 
-    private void rollbackBranchProtection(String snapshotDir){
+    public void rollbackBranchProtection(String snapshotDir){
         String branchProtection = null;
         String org = null;
         String repo = null;

@@ -50,7 +50,7 @@ public class GithubBranchProtection {
         gbp.setBranchProtection(reposWithMainBranches, Const.ORGANIZATION, BRANCH_PROTECTION_RULES);
     }
 
-    private void setBranchProtection(Map<String, List<Branch>> reposWithMainBranches, String org, String protectionRules){
+    public void setBranchProtection(Map<String, List<Branch>> reposWithMainBranches, String org, String protectionRules){
         for (String repo : reposWithMainBranches.keySet()) {
             for (Branch branch : reposWithMainBranches.get(repo)) {
                 String putEndpoint = "https://api.github.com/repos/" + org + "/" + repo + "/branches/" + branch.getName() + "/protection";
@@ -60,7 +60,7 @@ public class GithubBranchProtection {
         }
     }
 
-    private void saveCurrentState(Map<String, List<Branch>> reposWithMainBranches, String org, String snapshotDir){
+    public void saveCurrentState(Map<String, List<Branch>> reposWithMainBranches, String org, String snapshotDir){
         for (String repo : reposWithMainBranches.keySet()) {
             for (Branch branch : reposWithMainBranches.get(repo)) {
                 if (branch.isProtectedBranch()){
@@ -73,11 +73,11 @@ public class GithubBranchProtection {
         }
     }
 
-    private void saveProtectionState(String org, String repo, String branch, String snapshotDir){
+    public void saveProtectionState(String org, String repo, String branch, String snapshotDir){
         saveProtectionState(org, repo, branch, snapshotDir, "");
     }
 
-    private void saveProtectionState(String org, String repo, String branch, String snapshotDir, String protectionData){
+    public void saveProtectionState(String org, String repo, String branch, String snapshotDir, String protectionData){
         String fileName = snapshotDir + org + "___" + repo + "___" + branch;
         File file = new File(snapshotDir);
         if (!file.exists()){
@@ -95,7 +95,7 @@ public class GithubBranchProtection {
         }
     }
 
-    private Map<String, List<Branch>> findMainBranches(String org){
+    public Map<String, List<Branch>> findMainBranches(String org){
         Map<String, List<Branch>> reposBranchesMap = new HashMap();
         List<Branch> mainBranches = new ArrayList<Branch>();
         for (Repo repo : GithubClient.getAllReposInOrg(org)) {
