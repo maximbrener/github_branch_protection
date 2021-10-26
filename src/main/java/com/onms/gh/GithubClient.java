@@ -30,7 +30,7 @@ public class GithubClient {
         return getGithubData(url);
     }
 
-    public static Branch[] getBranches(Repo repo, String org) {
+    public static Branch[] getAllBranchesInOrg(Repo repo, String org) {
         List<Branch> allBranches = new ArrayList<>();
         String repoName = repo.getName();
         boolean notEmpty = true;
@@ -60,7 +60,7 @@ public class GithubClient {
         return allBranches.toArray(branchesArray);
     }
 
-    public static Repo[] getRepos(String org) {
+    public static Repo[] getAllReposInOrg(String org) {
         Repo[] repos = new Repo[0];
         String reposJson = getGithubData("https://api.github.com/orgs/" + org + "/repos?per_page=100");
         if (reposJson != null) {

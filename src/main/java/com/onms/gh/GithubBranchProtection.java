@@ -99,9 +99,9 @@ public class GithubBranchProtection {
     private Map<String, List<Branch>> findMainBranches(String org){
         Map<String, List<Branch>> reposBranchesMap = new HashMap();
         List<Branch> mainBranches = new ArrayList<Branch>();
-        for (Repo repo : GithubClient.getRepos(org)) {
+        for (Repo repo : GithubClient.getAllReposInOrg(org)) {
             if (!repo.isArchived()) {
-                for (Branch branch : GithubClient.getBranches(repo, org)) {
+                for (Branch branch : GithubClient.getAllBranchesInOrg(repo, org)) {
                     if (branch.getName().equals("develop") || branch.getName().equals("main") || branch.getName().equals("master") ||
                             branch.getName().startsWith("foundation") || branch.getName().startsWith("release") || branch.getName().equals("trunk")) {
                         if (!mainBranches.contains(branch)) {
