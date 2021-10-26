@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="34240bf6-4218-4284-b7c3-bbc6aa6cc131" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/branches.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main_branches.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/snapshot/OpenNMS___opennms___schedule-refactor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/onms/gh/GithubBranchProtectionRollback.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/onms/gh/GithubClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/onms/gh/Utils.java" afterDir="false" />
-    </list>
+    <list default="true" id="34240bf6-4218-4284-b7c3-bbc6aa6cc131" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,6 +38,11 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.onms.gh" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="GithubBranchProtection" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
