@@ -28,7 +28,7 @@ public class GithubClient {
         return getGithubData(url);
     }
 
-    public static Branch[] getAllBranchesInOrg(Repo repo, String org) {
+    public static Branch[] getAllBranches(Repo repo, String org) {
         List<Branch> allBranches = new ArrayList<>();
         String repoName = repo.getName();
         boolean notEmpty = true;
@@ -144,6 +144,31 @@ public class GithubClient {
                 .header("Authorization", authHeaderValue)
                 .header("Accept", "application/vnd.github.loki-preview+json")
                 .PUT(HttpRequest.BodyPublishers.ofString(body))
+                .build();
+
+        HttpClient client = HttpClient.newHttpClient();
+        try {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(response.statusCode());
+        System.out.println(response.body());
+    }
+
+    public static void postGithubData(String url, String body) {
+        HttpResponse<String> response = null;
+        byte[] encodedAuth = Base64.getEncoder().encode(Const.AUTH.getBytes(StandardCharsets.UTF_8));
+        String authHeaderValue = "Basic " + new String(encodedAuth);
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .header("Content-Type", "application/json")
+                .header("Authorization", authHeaderValue)
+                .header("Accept", "application/vnd.github.loki-preview+json")
+                .POST(HttpRequest.BodyPublishers.ofString(body))
                 .build();
 
         HttpClient client = HttpClient.newHttpClient();
