@@ -13,8 +13,6 @@ import java.util.List;
  */
 public class GithubRepoReview {
 
-    private static final String REVIEW_REPORT_FILE = "review_report.txt";
-
     public static void main(String[] args) {
         if (args.length < 1) {
             System.out.println("Usage: java GithubRepoReview <owner/repo>");
@@ -156,23 +154,11 @@ public class GithubRepoReview {
     private List<Branch> findMainBranches(Branch[] branches) {
         List<Branch> mainBranches = new ArrayList<>();
         for (Branch branch : branches) {
-            if (isMainBranch(branch.getName())) {
+            if (Utils.isMainBranch(branch.getName())) {
                 mainBranches.add(branch);
             }
         }
         return mainBranches;
-    }
-
-    /**
-     * Check if a branch name is considered a main branch
-     */
-    private boolean isMainBranch(String branchName) {
-        return branchName.equals("develop") ||
-                branchName.equals("main") ||
-                branchName.equals("master") ||
-                branchName.equals("trunk") ||
-                branchName.startsWith("foundation") ||
-                branchName.startsWith("release");
     }
 
     /**

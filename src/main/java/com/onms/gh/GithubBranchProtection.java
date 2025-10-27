@@ -101,8 +101,7 @@ public class GithubBranchProtection {
         for (Repo repo : GithubClient.getAllReposInOrg(org)) {
             if (!repo.isArchived()) {
                 for (Branch branch : GithubClient.getAllBranches(repo, org)) {
-                    if (branch.getName().equals("develop") || branch.getName().equals("main") || branch.getName().equals("master") ||
-                            branch.getName().startsWith("foundation") || branch.getName().startsWith("release") || branch.getName().equals("trunk")) {
+                    if (Utils.isMainBranch(branch.getName())) {
                         if (!mainBranches.contains(branch)) {
                             mainBranches.add(branch);
                         }

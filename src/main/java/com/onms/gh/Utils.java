@@ -59,4 +59,17 @@ public class Utils {
     public static String readFile(String dir, String file) throws IOException {
         return Files.readString(Path.of(dir, file));
     }
+
+    /**
+     * Check if a branch name is considered a main branch
+     * (develop, main, master, trunk, release*, foundation*)
+     */
+    public static boolean isMainBranch(String branchName) {
+        return branchName.equals("develop") ||
+                branchName.equals("main") ||
+                branchName.equals("master") ||
+                branchName.equals("trunk") ||
+                branchName.startsWith("foundation") ||
+                branchName.startsWith("release");
+    }
 }
