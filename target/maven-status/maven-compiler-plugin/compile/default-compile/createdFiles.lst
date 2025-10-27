@@ -1,0 +1,15 @@
+com/onms/gh/dto/Protection.class
+com/onms/gh/GithubClient.class
+com/onms/gh/dto/Repo.class
+com/onms/gh/GithubTeamsManagement.class
+com/onms/gh/dto/RequiredStatusChecks.class
+com/onms/gh/dto/Permissions.class
+com/onms/gh/dto/Branch.class
+com/onms/gh/Utils.class
+com/onms/gh/GithubBranchProtectionRollback.class
+com/onms/gh/dto/Team.class
+com/onms/gh/Const.class
+com/onms/gh/dto/Owner.class
+com/onms/gh/GithubBranchProtection.class
+com/onms/gh/dto/Commit.class
+com/onms/gh/dto/License.class
