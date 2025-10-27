@@ -1,0 +1,13 @@
+# Maven build artifacts
+target/
+*.class
+
+# IDE files
+.idea/
+*.iml
+
+# CSV output files
+*.csv
+
+# Snapshot directory
+snapshot/
