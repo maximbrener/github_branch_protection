@@ -184,8 +184,27 @@ public class GithubClient {
     }
 
     public static void createRepository(String org, String repoName) {
+        if (org == null || org.isEmpty()) {
+            throw new IllegalArgumentException("Organization name cannot be null or empty");
+        }
+        if (repoName == null || repoName.isEmpty()) {
+            throw new IllegalArgumentException("Repository name cannot be null or empty");
+        }
+        
         String postEndpoint = "https://api.github.com/orgs/" + org + "/repos";
-        String body = "{\"name\":\"" + repoName + "\",\"private\":false}";
+        com.onms.gh.dto.RepoCreation repoCreation = new com.onms.gh.dto.RepoCreation();
+        repoCreation.setName(repoName);
+        repoCreation.setPrivateRepo(false);
+        
+        ObjectMapper objectMapper = new ObjectMapper();
+        String body = null;
+        try {
+            body = objectMapper.writeValueAsString(repoCreation);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return;
+        }
+        
         System.out.println("Creating repository: " + repoName + " in organization: " + org);
         postGithubData(postEndpoint, body);
     }
