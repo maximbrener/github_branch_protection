@@ -9,3 +9,9 @@ To see what branches were modified with protection see main_branches.csv file.
 ## Rollback applied branch protection
 When we apply branch protection we also save current protection state of all the branches under the snapshot folder. To rollback to that previous state, do the following:
 1. Run main() method in the GithubBranchProtectionRollback class
+
+## Create a new repository
+To create a new repository in the organization:
+1. Modify AUTH member in the Const class with username and token
+2. Modify ORGANIZATION member in the Const class with name of the organization you want to create the repository in
+3. Run main() method in the GithubRepoCreation class (currently creates "task-mng-take-home" repository)

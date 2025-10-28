@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.onms.gh.dto.Branch;
 import com.onms.gh.dto.Repo;
+import com.onms.gh.dto.RepoCreation;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -181,5 +182,32 @@ public class GithubClient {
         }
         System.out.println(response.statusCode());
         System.out.println(response.body());
+    }
+
+    public static void createRepository(String org, String repoName) {
+        if (org == null || org.isEmpty()) {
+            throw new IllegalArgumentException("Organization name cannot be null or empty");
+        }
+        if (repoName == null || repoName.isEmpty()) {
+            throw new IllegalArgumentException("Repository name cannot be null or empty");
+        }
+        
+        String postEndpoint = "https://api.github.com/orgs/" + org + "/repos";
+        RepoCreation repoCreation = new RepoCreation();
+        repoCreation.setName(repoName);
+        repoCreation.setPrivateRepo(false);
+        
+        ObjectMapper objectMapper = new ObjectMapper();
+        String body = null;
+        try {
+            body = objectMapper.writeValueAsString(repoCreation);
+        } catch (JsonProcessingException e) {
+            System.err.println("Error serializing repository creation request: " + e.getMessage());
+            e.printStackTrace();
+            return;
+        }
+        
+        System.out.println("Creating repository: " + repoName + " in organization: " + org);
+        postGithubData(postEndpoint, body);
     }
 }
