@@ -182,4 +182,11 @@ public class GithubClient {
         System.out.println(response.statusCode());
         System.out.println(response.body());
     }
+
+    public static void createRepository(String org, String repoName) {
+        String postEndpoint = "https://api.github.com/orgs/" + org + "/repos";
+        String body = "{\"name\":\"" + repoName + "\",\"private\":false}";
+        System.out.println("Creating repository: " + repoName + " in organization: " + org);
+        postGithubData(postEndpoint, body);
+    }
 }
