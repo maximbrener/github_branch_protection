@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.onms.gh.dto.Branch;
 import com.onms.gh.dto.Repo;
+import com.onms.gh.dto.RepoCreation;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -192,7 +193,7 @@ public class GithubClient {
         }
         
         String postEndpoint = "https://api.github.com/orgs/" + org + "/repos";
-        com.onms.gh.dto.RepoCreation repoCreation = new com.onms.gh.dto.RepoCreation();
+        RepoCreation repoCreation = new RepoCreation();
         repoCreation.setName(repoName);
         repoCreation.setPrivateRepo(false);
         
@@ -201,6 +202,7 @@ public class GithubClient {
         try {
             body = objectMapper.writeValueAsString(repoCreation);
         } catch (JsonProcessingException e) {
+            System.err.println("Error serializing repository creation request: " + e.getMessage());
             e.printStackTrace();
             return;
         }
